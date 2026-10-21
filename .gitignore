@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+.next/
+
+# dbt
+transform/dbt/target/
+transform/dbt/logs/
+transform/dbt/dbt_packages/
+
+# Dagster
+.dagster_home/
+tmp*/
+
+# Editores / SO
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
