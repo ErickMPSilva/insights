@@ -59,9 +59,9 @@ def two_tenants():
 
 def test_tenant_sees_only_its_own_rows(two_tenants):
     with tenant_session(two_tenants.tenant_a) as s:
-        rows = s.scalars(select(Membership)).all()
+        tenant_ids = {r.tenant_id for r in s.scalars(select(Membership))}
 
-    assert {r.tenant_id for r in rows} == {two_tenants.tenant_a}
+    assert tenant_ids == {two_tenants.tenant_a}
 
 
 def test_without_context_sees_nothing(two_tenants):
@@ -97,9 +97,9 @@ def test_cannot_update_another_tenants_rows(two_tenants):
 
 def test_user_session_sees_only_own_memberships(two_tenants):
     with user_session(two_tenants.user_a) as s:
-        rows = s.scalars(select(Membership)).all()
+        user_ids = [r.user_id for r in s.scalars(select(Membership))]
 
-    assert [r.user_id for r in rows] == [two_tenants.user_a]
+    assert user_ids == [two_tenants.user_a]
 
 
 def test_user_session_cannot_write(two_tenants):
