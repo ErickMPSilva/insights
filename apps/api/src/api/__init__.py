@@ -1,2 +1,4 @@
 def main() -> None:
-    print("Hello from api!")
+    import uvicorn
+
+    uvicorn.run("api.main:app", reload=True, port=8000)

@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     app_migrator_database_url: str
     warehouse_database_url: str
     redis_url: str
+    jwt_secret_key: str
+    access_token_expire_minutes: int = 60
 
 
 @lru_cache
